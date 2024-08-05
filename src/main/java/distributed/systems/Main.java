@@ -101,12 +101,12 @@ public class Main {
             throw new IllegalArgumentException("Input values must be within the range of -1e6 to 1e6.");
         }
 
-        if (x == 0 && y > 0) {
+        if (x == 0 && y == 0) {
+            throw new IllegalArgumentException("0^0 is undefined.");
+        } else if (x == 0 && y > 0) {
             return 0;
         } else if (y == 0) {
             return 1;
-        } else if (x == 0 && y == 0) {
-            throw new IllegalArgumentException("0^0 is undefined.");
         } else if (x < 0 && y != Math.floor(y)) {
             throw new IllegalArgumentException("Negative base with non-integer exponent results in a complex number.");
         }
