@@ -96,35 +96,33 @@ public class Main {
     }
 
     // Method to calculate x^y
-    static double calculatePower(double x, double y) {
-        if (x < -1e6 || x > 1e6 || y < -1e6 || y > 1e6) { // Validate input range
-            throw new IllegalArgumentException("Input values must be within the range of -1e6 to 1e6."); // Throw exception for invalid input range
+    public static double calculatePower(double x, double y) {
+        if (x < -1e6 || x > 1e6 || y < -1e6 || y > 1e6) {
+            throw new IllegalArgumentException("Input values must be within the range of -1e6 to 1e6.");
         }
 
-        // Handle special cases
         if (x == 0 && y > 0) {
-            return 0; // Handle 0^positive cases
+            return 0;
         } else if (y == 0) {
-            return 1; // Handle any number to the power of 0
+            return 1;
         } else if (x == 0 && y == 0) {
-            throw new IllegalArgumentException("0^0 is undefined."); // Handle 0^0 case
+            throw new IllegalArgumentException("0^0 is undefined.");
         } else if (x < 0 && y != Math.floor(y)) {
-            throw new IllegalArgumentException("Negative base with non-integer exponent results in a complex number."); // Handle negative base with non-integer exponent
+            throw new IllegalArgumentException("Negative base with non-integer exponent results in a complex number.");
         }
 
-        double result = 1.0; // Initialize result
-        boolean negativeExponent = y < 0; // Check if exponent is negative
-        y = Math.abs(y); // Use absolute value of exponent
+        double result = 1.0;
+        boolean negativeExponent = y < 0;
+        y = Math.abs(y);
 
-        // Using Exponentiation by Squaring
         while (y > 0) {
-            if ((int) y % 2 == 1) { // If y is odd
-                result *= x; // Multiply result by x
+            if ((int) y % 2 == 1) {
+                result *= x;
             }
-            x *= x; // Square x
-            y = Math.floor(y / 2); // Divide y by 2
+            x *= x;
+            y = Math.floor(y / 2);
         }
 
-        return negativeExponent ? 1 / result : result; // Return the result, considering if the exponent was negative
+        return negativeExponent ? 1 / result : result;
     }
 }
