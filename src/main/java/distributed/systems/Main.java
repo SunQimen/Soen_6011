@@ -5,6 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main {
+    // Private constructor to prevent instantiation
+    private Main() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     public static void main(String[] args) {
         // Create the frame
         JFrame frame = new JFrame("Transcendental Function Calculator"); // Create a new JFrame with the title
@@ -48,31 +53,25 @@ public class Main {
         userTextY.setBounds(100, 80, 165, 25); // Set the position and size of the text field
         panel.add(userTextY); // Add the text field to the panel
 
-        // Button to trigger the calculation
-        JButton calculateButton = new JButton("Calculate"); // Create a button for calculation
-        calculateButton.setBounds(10, 110, 150, 25); // Set the position and size of the button
-        panel.add(calculateButton); // Add the button to the panel
-
         // Label for the result
         JLabel resultLabel = new JLabel("Result:"); // Create a label for the result
-        resultLabel.setBounds(10, 140, 80, 25); // Set the position and size of the label
+        resultLabel.setBounds(10, 110, 80, 25); // Set the position and size of the label
         panel.add(resultLabel); // Add the label to the panel
 
-        // Text area to display the result
-        JTextArea result = new JTextArea(""); // Create a text area for displaying the result
-        result.setBounds(100, 140, 250, 50); // Set the position and size of the text area
-        result.setLineWrap(true); // Enable line wrapping
-        result.setWrapStyleWord(true); // Wrap lines at word boundaries
-        result.setEditable(false); // Make the text area non-editable
-        panel.add(result); // Add the text area to the panel
+        JLabel result = new JLabel(""); // Create a label for displaying the result
+        result.setBounds(100, 110, 165, 25); // Set the position and size of the label
+        panel.add(result); // Add the label to the panel
 
-        // Button to exit the application
-        JButton exitButton = new JButton("Exit"); // Create a button to exit the application
-        exitButton.setBounds(10, 200, 150, 25); // Set the position and size of the button
+        JButton calculateButton = new JButton("Calculate"); // Create a button for calculation
+        calculateButton.setBounds(10, 140, 150, 25); // Set the position and size of the button
+        panel.add(calculateButton); // Add the button to the panel
+
+        JButton exitButton = new JButton("Exit"); // Create a button for exiting the application
+        exitButton.setBounds(170, 140, 150, 25); // Set the position and size of the button
         panel.add(exitButton); // Add the button to the panel
 
-        // Add action listener for the calculate button
         calculateButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     double x = Double.parseDouble(userTextX.getText()); // Parse the x input as a double
@@ -87,8 +86,8 @@ public class Main {
             }
         });
 
-        // Add action listener for the exit button
         exitButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0); // Exit the application
             }
